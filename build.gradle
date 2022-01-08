@@ -1,12 +1,20 @@
+buildscript {
+	ext {
+		javaVersion = '11'
+		springbootVersion = '2.6.2'
+		jaxbApiVersion = '2.3.1'
+	}
+}
+
 plugins {
-	id 'org.springframework.boot' version '2.6.2'
+	id 'org.springframework.boot' version "${springbootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = "${javaVersion}" as Object
 
 configurations {
 	compileOnly {
@@ -21,9 +29,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+	implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbApiVersion}"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 test {
