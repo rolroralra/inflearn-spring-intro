@@ -14,7 +14,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "${javaVersion}" as Object
+sourceCompatibility = "${javaVersion}"
 
 configurations {
 	compileOnly {
@@ -31,6 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
 	implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbApiVersion}"
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
