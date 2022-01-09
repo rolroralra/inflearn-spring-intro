@@ -2,11 +2,13 @@ package com.example.demo.repository.impl;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
     private static Map<Long, Member> storage;
     private static AtomicLong sequence;

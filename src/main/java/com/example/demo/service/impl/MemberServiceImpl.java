@@ -4,10 +4,12 @@ import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;

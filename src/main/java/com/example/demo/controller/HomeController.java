@@ -12,15 +12,14 @@ public class HomeController {
 
     @GetMapping("hello")
     public String hello(Model model) {
-        model.addAttribute("data", "SpringBoot");
+        model.addAttribute("name", "Guest");
         return "hello";
     }
 
     @GetMapping("hello-mvc")
     public String helloMvc(@RequestParam(defaultValue = "Guest") String name, Model model) {
         model.addAttribute("name", name);
-
-        return "hello-template";
+        return "hello";
     }
 
     @GetMapping(value = "hello-api")
