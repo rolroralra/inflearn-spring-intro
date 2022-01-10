@@ -5,7 +5,7 @@
     <title>Join</title>
 </head>
 <body>
-<h1 th:text="'Hello ' + ${name} + '!'">Hello Guest!</h1>
+<h1 th:text="'Hello ' + (${name} ?: 'Guest') + '!'">Hello Guest!</h1>
 
 <div class="container">
     <div>
