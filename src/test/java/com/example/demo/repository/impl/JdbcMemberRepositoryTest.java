@@ -2,31 +2,30 @@ package com.example.demo.repository.impl;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MemoryMemberRepositoryTest {
-
-    MemberRepository memberRepository = new MemoryMemberRepository();
+@DataJdbcTest
+class JdbcMemberRepositoryTest {
+    @Autowired
+    private DataSource dataSource;
+    private MemberRepository memberRepository;
 
     @BeforeEach
     void beforeEach() {
+        memberRepository = new JdbcMemberRepository(dataSource);
         memberRepository.deleteAll();
-
         Member member = new Member();
         member.setName("admin");
         memberRepository.save(member);
-    }
-
-    @AfterEach
-    void afterEach() {
-        memberRepository.deleteAll();
     }
 
     @Test
@@ -35,6 +34,7 @@ class MemoryMemberRepositoryTest {
         Member member = new Member();
         member.setName("rolroralra");
 
+        System.out.println(dataSource.toString());
         // When
         memberRepository.save(member);
 

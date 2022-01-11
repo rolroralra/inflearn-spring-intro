@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Member {
     private Long id;
     private String name;

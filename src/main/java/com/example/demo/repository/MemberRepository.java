@@ -11,4 +11,8 @@ public interface MemberRepository {
     List<Member> findAll();
 
     Optional<Member> findByName(String name);
+
+    void delete(Member member);
+    void deleteById(Long id);
+    void deleteAll();
 }

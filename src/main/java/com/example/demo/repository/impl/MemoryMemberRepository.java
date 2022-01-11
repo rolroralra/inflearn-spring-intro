@@ -41,7 +41,18 @@ public class MemoryMemberRepository implements MemberRepository {
                 .findAny();
     }
 
-    public void clear() {
+    @Override
+    public void delete(Member member) {
+        storage.remove(member.getId());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        storage.remove(id);
+    }
+
+    @Override
+    public void deleteAll() {
         storage.clear();
         sequence.set(0L);
     }
