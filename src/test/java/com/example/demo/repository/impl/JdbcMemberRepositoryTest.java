@@ -5,7 +5,8 @@ import com.example.demo.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJdbcTest
+@JdbcTest
+@Sql({"classpath:schema.sql"})
 class JdbcMemberRepositoryTest {
     @Autowired
     private DataSource dataSource;
@@ -22,7 +24,6 @@ class JdbcMemberRepositoryTest {
     @BeforeEach
     void beforeEach() {
         memberRepository = new JdbcMemberRepository(dataSource);
-        memberRepository.deleteAll();
         Member member = new Member();
         member.setName("admin");
         memberRepository.save(member);
@@ -34,7 +35,6 @@ class JdbcMemberRepositoryTest {
         Member member = new Member();
         member.setName("rolroralra");
 
-        System.out.println(dataSource.toString());
         // When
         memberRepository.save(member);
 

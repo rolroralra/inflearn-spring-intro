@@ -5,8 +5,5 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @SelectPackages({"com.example.demo.repository.impl"})
-//@IncludePackages({"com.example.demo.repository.impl"})
-//@SelectClasses({JdbcMemberRepository.class})
 class MemberRepositoryTest {
-
 }
