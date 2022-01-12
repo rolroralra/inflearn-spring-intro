@@ -33,6 +33,7 @@ dependencies {
 	implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
 	implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbApiVersion}"
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation("com.google.guava:guava:31.0.1-jre")
 	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
