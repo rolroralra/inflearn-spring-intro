@@ -1,8 +1,12 @@
 buildscript {
 	ext {
 		javaVersion = '11'
-		springbootVersion = '2.6.2'
+		springbootVersion = '2.6.3'
 		jaxbApiVersion = '2.3.1'
+		jasyptVersion = '3.0.4'
+		apacheCommonsLang3Verion = '3.12.0'
+		guavaVersion = '31.0.1-jre'
+		junitSuiteVersion = '1.8.2'
 	}
 }
 
@@ -31,20 +35,29 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 //	implementation 'org.springframework.boot:spring-boot-starter-jdbc'	// "data-jpa" include "jdbc"
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 	implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
 	implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbApiVersion}"
-	implementation 'org.apache.commons:commons-lang3:3.12.0'
-	implementation("com.google.guava:guava:31.0.1-jre")
+	implementation "org.apache.commons:commons-lang3:${apacheCommonsLang3Verion}"
+	implementation "com.google.guava:guava:${guavaVersion}"
+	implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptVersion}"
+
 	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.junit.platform:junit-platform-suite-engine:1.8.2'
-	testImplementation 'org.junit.platform:junit-platform-suite-api:1.8.2'
+	implementation "org.junit.platform:junit-platform-suite-engine:${junitSuiteVersion}"
+	testImplementation "org.junit.platform:junit-platform-suite-api:${junitSuiteVersion}"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+bootRun {
+	if ( project.hasProperty('jvmArgs') ) {
+		jvmArgs = (project.jvmArgs.split("\\s+") as List)
+	}
 }

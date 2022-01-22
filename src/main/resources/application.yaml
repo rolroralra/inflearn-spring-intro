@@ -1,6 +1,13 @@
 spring:
   profiles:
-    active: dev
+    active: test
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+logging:
+  level:
+    root: info
 
 ---
 spring:
@@ -8,14 +15,52 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:h2:tcp://localhost/~/Workspace/h2-test/test
+    url: jdbc:h2:mem:default
     driver-class-name: org.h2.Driver
     username: sa
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+logging:
+  level:
+    root: info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/Workspace/h2-test/test
+    driver-class-name: org.h2.Driver
+    username: ENC(iUubA1rYHZJBqaNPTl8muGDtRTIEkKI2PXYHdisj9JXNnDOGJ1OWTx7OWMFULetC)
+    password: ENC(TERdVMTj/ZecP84+hjwA6ioF8QJvXst8cGMxnZa0N2bRC8CdPmk4t+g4YHokUuIO)
+  jpa:
+    show-sql: true
+    open-in-view: false
     hibernate:
       ddl-auto: none
 logging:
   level:
     root: info
 
+---
+spring:
+  config:
+    activate:
+      on-profile: prd
+  datasource:
+    url: jdbc:h2:tcp://h2.database:2100
+    driver-class-name: org.h2.Driver
+    username: ENC(iUubA1rYHZJBqaNPTl8muGDtRTIEkKI2PXYHdisj9JXNnDOGJ1OWTx7OWMFULetC)
+    password: ENC(TERdVMTj/ZecP84+hjwA6ioF8QJvXst8cGMxnZa0N2bRC8CdPmk4t+g4YHokUuIO)
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+logging:
+  level:
+    root: info
