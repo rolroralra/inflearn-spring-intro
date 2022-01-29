@@ -7,9 +7,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.example.demo.aspect" level="debug">
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <logger name="com.example.demo.aspect" level="debug"/>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
