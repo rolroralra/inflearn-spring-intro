@@ -19,17 +19,19 @@ import javax.sql.DataSource;
 public class SpringConfig {
     private final DataSource dataSource;
     private final EntityManager entityManager;
+    private final MemberRepository memberRepository;
 
     @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
 
-    @Bean
+//    @Bean
     public MemberRepository memberRepository() {
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(entityManager);
+////        return new MemoryMemberRepository();
+////        return new JdbcMemberRepository(dataSource);
+////        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JpaMemberRepository(entityManager);
+        return this.memberRepository;
     }
 }
